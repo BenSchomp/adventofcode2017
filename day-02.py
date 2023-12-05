@@ -6,6 +6,8 @@ for line in file:
   line = line.strip()
   values = line.split()
 
+  # --- part one --- #
+
   vMin = vMax = int(values[0])
   for v in values:
     v = int(v)
@@ -13,11 +15,19 @@ for line in file:
       vMax = v
     if v < vMin:
       vMin = v
-  checksum = vMax - vMin
+
   part_one += vMax - vMin
-  print( line, ':', checksum )
+
+  # --- part two --- #
+
+  for i in range(len(values)):
+    for j in range(len(values)):
+      if i == j:
+        continue
+      if int(values[i]) % int(values[j]) == 0:
+        part_two += int(values[i]) / int(values[j])
 
 file.close()
 
 print( "part_one:", part_one )
-print( "part_two:", part_two )
+print( "part_two:", int(part_two) )
